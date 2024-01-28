@@ -1,5 +1,196 @@
 # Home-tasks-html-css-js-
 
+//1 - 28/01/2024
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tasks</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Oswald&display=swap" rel="stylesheet"> 
+
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous">
+
+    <style>
+
+    *{
+        box-sizing: border-box;
+    }
+
+    html, body{
+        margin: 0;
+        padding: 0;
+    }
+
+    ul{
+        background-color: rgb(255, 200, 230);
+    }
+
+    ul.list-unstyled{
+        color: rgb(0, 0, 0);
+        list-style-type: none;
+        font-size: 40px;
+        margin: 0;
+        padding: 0;
+    }
+
+    ul li{
+        display: block;
+        padding: 10px 25px;
+        transition: all 0.2s linear;
+        cursor: pointer;
+    }
+
+    li:hover{
+        background-color: rgb(255, 168, 216);
+    }
+
+
+    .list-inline{
+        width: 100%;
+
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    a{
+        text-decoration: none;
+        color: #ffdbf5;
+    }
+
+    </style>
+</head>
+
+
+<body>
+    <script src="tasks.js"></script> 
+</body>
+
+</html>
+
+
+
+//creating array
+
+//let list = new Object();
+//list.classes = []; 
+
+let list = {
+    classes: [],
+    attributes: [],
+    items: [],
+    //методы
+    addClass: function(className){
+        this.classes.push(className);
+    },
+    addAttribute: function(attributeName, attributeValue){
+
+        let attr = {
+            name: '',
+            value: '',
+        }
+        attr.name = attributeName;
+        attr.value = attributeValue;
+
+        this.attributes.push(attr);
+        //this.attributes = list.attributes
+    },
+    addItems: function(itemName){
+        this.items.push(itemName);
+    },
+    //тут будем рисовать js в html - ul(list)/li(item)
+    render(){
+        //нужно в body добавить список
+        let ul = document.createElement("ul");
+
+        //ul.classList.add("createdClass"); - просто добавляем класс
+        this.classes.forEach(function(text){
+            ul.classList.add(text);
+        });
+
+        this.items.forEach(function(item){
+            let li = document.createElement("li");
+            //li.innerText = item.text
+            //тут создать ссылку A
+            let a = document.createElement("a");
+
+            a.href = item.href;
+            a.innerText = item.text;
+
+            
+            ul.append(li);
+            li.append(a);
+        });
+
+        //добавляем ul в начало body
+        document.body.prepend(ul);
+    },
+}
+
+/*let item = {
+    text: '',
+    setText(text){
+        this.text = text;
+    }
+    //setText: function(text){
+        //this.text = text;
+    //}
+}
+item.setText("Hello");
+console.log(item.text);
+list.addItems(item);*/
+
+
+let texts = [
+    {text: "Main", href: "http://mail.ru"}, 
+    {text: "Header", href: "http://google.com"}, 
+    {text: "Information", href: "http://github.com"}, 
+    {text: "New", href: "http://bootstrap.com"}];
+
+texts.forEach(function(text){
+
+    /*let item = {
+        text: '',
+        href: '',
+        setText(text){
+            this.text = text;
+        },
+        setHref(href){
+            this.href = href;
+        }
+    }
+    item.setText(text.text);
+
+    item.setHref(text.href);
+
+    list.addItems(item);*/
+
+    list.addItems(text);
+
+});
+
+console.log(list);
+
+list.addClass("list-unstyled");
+list.addClass("list-inline");
+
+//---------------------------
+//выводим list 
+
+list.render();
+
+
+
+
+
+
+
 
 
 //1 - Реализовать html-страницу с вертикальным меню (задание 2)
